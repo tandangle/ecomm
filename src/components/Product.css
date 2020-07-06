@@ -1,7 +1,8 @@
 .Product {
-	border: 1px solid #eee;
+	border: 3px solid #eee;
 	margin: 1rem 0;
 	padding: 1rem;
+	flex: 1;
 }
 
 @media (min-width: 800px) {

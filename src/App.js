@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 // import { Elements, StripeProvider } from 'react-stripe-elements';
+import {
+	BrowserRouter as Router,
+	Switch,
+	Route,
+	Link
+  } from "react-router-dom";
 import items from './api/products';
 import Product from './components/Product';
 import Cart from './components/Cart';
 // import CheckoutForm from './components/CheckoutForm/CheckoutForm';
-import logo from './logo.svg';
 import './App.css';
 
 export default function App() {
@@ -31,24 +36,41 @@ export default function App() {
 	const totalCost = itemsInCart.reduce((acc, item) => acc + item.price * item.quantity, 0);
 
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
-				<h1 className="App-header-text">Tan's Shop</h1>
-			</header>
-			<main className="App-shop">
-				<div className="App-products">
-					{items.map((item) => (
-						<Product
-							key={item.title}
-							title={item.title}
-							price={item.price}
-							onAddToCartClick={() => handleAddToCartClick(item.id)}
-						/>
-					))}
-				</div>
-				<Cart itemsInCart={itemsInCart} totalCost={totalCost} />
-			</main>
-		</div>
+		<Router>
+			<div className="App">
+				<header className="App-header">
+					<nav>
+						<ul>
+							<li>
+								<Link to="/">Home</Link>
+							</li>
+							<li>
+								<Link to="/cart">Cart</Link>
+							</li>
+						</ul>
+					</nav>
+				</header>
+				<Switch>
+					<Route path="/cart">
+						<Cart itemsInCart={itemsInCart} totalCost={totalCost} />
+					</Route>
+					<Route path="/">
+						<main className="App-shop">
+							<div className="App-products">
+								{items.map((item) => (
+									<Product
+										key={item.title}
+										title={item.title}
+										price={item.price}
+										image={item.image}
+										onAddToCartClick={() => handleAddToCartClick(item.id)}
+									/>
+								))}
+							</div>
+						</main>
+					</Route>
+				</Switch>
+			</div>
+		</Router>
 	);
 }
