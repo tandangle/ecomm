@@ -1,15 +1,12 @@
-.App-logo {
-	animation: App-logo-spin infinite 20s linear;
-	height: 32px;
+html, body {
+	height:100%;
 }
 
 .App-header {
+	padding: 12px 8px 8px 8px;
 	background-color: #282c34;
-	height: 100px;
+	height: auto;
 	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
 	font-size: calc(10px + 2vmin);
 	color: white;
 }
@@ -20,12 +17,28 @@
 
 .App-shop {
 	padding: 1rem 1rem 3rem;
+	height: 100%;
 }
 
-.App-products {
-	margin: 3rem auto 3.5rem;
-	max-width: 800px;
-	text-align: center;
+
+nav, ul {
+	width: 98%
+}
+
+.Product {
+	height: 500px;
+}
+
+ul {
+	list-style-type: none;
+	display: flex;
+	width: auto;
+	justify-content: space-between;
+}
+
+a {
+	color: white;
+	text-decoration: none;
 }
 
 @media (min-width: 800px) {

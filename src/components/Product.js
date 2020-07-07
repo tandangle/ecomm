@@ -1,14 +1,41 @@
 import React from 'react';
-import './Product.css';
+import {Card, Button, Col} from "react-bootstrap";
+import { addToCart } from "../redux/actionCreators/changeCart"
+import { connect } from 'react-redux';
+import items from '../api/products';
 
-export default function Product({ onAddToCartClick, price, title }) {
+const Product = ({ addItemToCart }) => {
 	return (
-		<div className="Product">
-			<h2 className="Product-title">{title}</h2>
-			<div className="Product-price">${price}</div>
-			<button className="Product-buy-button" onClick={onAddToCartClick}>
-				Add to cart
-			</button>
-		</div>
-	);
+		items.map((item) => (
+			<Col xs="2" className="Product"  key={item.id}>
+				<Card style={{ width: '18rem' }} className="h-100">
+				<Card.Img variant="top" src={item.image} />
+				<Card.Body>
+					<Card.Title>
+						{item.title}
+					</Card.Title>
+					<Card.Text>
+						$ {item.price}
+					</Card.Text>
+					<Button variant="primary" onClick={() => addItemToCart(item.id)}>Add to cart</Button>
+				</Card.Body>
+			</Card>
+			</Col>
+		))
+
+	)
+
 }
+
+// const mapStateToProps = ({ cart }) => {
+// 	cart
+// }
+
+const mapDispatchToProps = dispatch => ({
+	addItemToCart(item) {
+		dispatch(addToCart(item))
+	}
+});
+
+
+export default connect(null, mapDispatchToProps)(Product);

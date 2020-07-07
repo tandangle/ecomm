@@ -8,7 +8,7 @@
 
 .CartItem-details {
 	display: flex;
-	width: 180px;
+	width: 300px;
 }
 
 .CartItem-details div {
@@ -17,4 +17,22 @@
 
 .CartItem-quantity {
 	padding: 0 1rem;
+}
+
+.CartItem-quantity button {
+	margin: 2px;
+	border-radius: 5px;
+}
+
+#minus {
+	padding: 0px 3px 0px 3px;
+}
+
+#plus {
+	padding: 0px 2px 0px 2px;
+}
+
+button { 
+	margin: 0 0 0 5px;
+	padding: 2px;
 }
