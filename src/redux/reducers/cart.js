@@ -17,11 +17,13 @@ export default function(state = [], action) {
     } else if (action.type === "DECREMENT_FROM_CART") {
         const id = action.payload;
         const product = state.find(item => item.id === id);
-        if (product){
+        if (product && product.quantity !== 1){
             return state.map((item) => {
                 if (item.id !== id) return item;
                 return { ...product, quantity: item.quantity - 1}
             })
+        } else if (product && product.quantity === 1) {
+            return state.filter(item => item.id !== action.payload)
         }
     } else if (action.type === "INCREMENT_FROM_CART") {
         const id = action.payload;
